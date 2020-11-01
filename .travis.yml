@@ -5,3 +5,12 @@ services:
 script:
   - docker build -t bdelph79/node .
   - docker images bdelph79/node
+
+before_deploy:
+  - docker login -u bdelph79  -p Si26:83web
+
+deploy:
+  provider: script
+  script: docker push bdelph79/node
+  on:
+    branch: master
